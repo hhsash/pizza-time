@@ -20,13 +20,30 @@
     h1 {
       color: #181818;
       font-size: 24px;
-      letter-spacing: 1%;
       text-transform: uppercase;
       font-weight: 800;
+
+      @media screen and (max-width: 550px) {
+        width: 70px;
+      }
+
+      @media screen and (max-width: 450px) {
+        display: none;
+      }
     }
 
     p {
       color: #7b7b7b;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .cart__price, .button__delimiter {
+      display: none;
     }
   }
 }

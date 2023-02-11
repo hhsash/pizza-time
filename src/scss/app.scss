@@ -24,15 +24,54 @@ body {
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 35px;
+    grid-row-gap: 65px;
+    
+    @media screen and (max-width: 1465px) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-gap: 30px;
+    }
+    
+    @media screen and (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 25px;
+    }
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 1260px) {
+      .categories {
+        width: 100%;
+        overflow: scroll;
+      }
+
+      .sort {
+        padding-left: 30px;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      
+      .categories {
+        margin-bottom: 20px;
+      }
+
+      .sort {
+        padding-left: 0px;
+      }
+    }
   }
 }
 
@@ -46,6 +85,10 @@ body {
     .content__title {
       margin: 0;
     }
+
+    @media screen and (max-width: 850px) {
+      margin: 30px auto;
+    }
   }
 }
 
@@ -54,6 +97,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 550px) {
+      flex-direction: column;
+    }
   }
 
   .content__title {
@@ -103,6 +150,14 @@ body {
         color: darken($color: #b6b6b6, $amount: 50);
       }
     }
+
+    @media screen and (max-width: 550px) {
+      margin-top: 20px;
+    }
+  }
+
+  .content__items {
+    display: block;
   }
 
   &__item {
@@ -121,6 +176,17 @@ body {
       img {
         width: 80px;
         height: 80px;
+
+        @media screen and (max-width: 850px) {
+          width: 150px;
+          height: 150px;
+          margin-bottom: 15px;
+        }
+      }
+
+      @media screen and (max-width: 850px) {
+        width: 150px;
+        margin-right: 0;
       }
     }
 
@@ -141,13 +207,19 @@ body {
         font-size: 18px;
         color: #8d8d8d;
       }
+
+      @media screen and (max-width: 850px) {
+        width: auto;
+        text-align: center;
+        margin-bottom: 15px;
+      }
     }
 
     &-count {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 13%;
+      width: 15%;
 
       &-minus {
         svg {
@@ -160,18 +232,31 @@ body {
       b {
         font-size: 22px;
       }
+
+      @media screen and (max-width: 850px) {
+        width: 120px;
+        margin-bottom: 15px;
+      }
     }
 
     &-price {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 33%;
+      width: 30%;
 
       b {
         font-weight: bold;
         font-size: 22px;
         letter-spacing: 0.01em;
+      }
+
+      @media screen and (max-width: 850px) {
+        margin-bottom: 15px;
+      }
+
+      @media screen and (max-width: 550px) {
+        width: 50%;
       }
     }
 
@@ -179,7 +264,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      width: 4%;
+      width: 5%;
 
       .button {
         border-color: darken($color: $gray-line, $amount: 10);
@@ -205,6 +290,17 @@ body {
           background-color: darken($color: $gray-line, $amount: 80);
         }
       }
+
+      @media screen and (max-width: 850px) {
+        width: 40px;
+        justify-content: center;
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
     }
   }
 
@@ -223,6 +319,10 @@ body {
             color: $orange;
           }
         }
+      }
+
+      @media screen and (max-width: 850px) {
+        flex-direction: column;
       }
     }
 
@@ -268,7 +368,20 @@ body {
         font-weight: 600;
         width: 210px;
         padding: 16px;
+
+        @media screen and (max-width: 850px) {
+          margin-bottom: 20px;
+        }
       }
+
+      @media screen and (max-width: 850px) {
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      text-align: center;
     }
   }
 

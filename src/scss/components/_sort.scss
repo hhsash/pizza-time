@@ -5,12 +5,13 @@
   &__label {
     display: flex;
     align-items: center;
-
+    
     svg {
       margin-right: 8px;
     }
 
     b {
+      width: 110px;
       margin-right: 8px;
     }
 
