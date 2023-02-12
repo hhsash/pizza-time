@@ -7,12 +7,20 @@
     justify-content: center;
   }
   
-  width: 280px;
+  width: 260px;
   background: #ffffff;
   text-align: center;
 
   &__image {
     width: 260px;
+
+    @media screen and (max-width: 550px) {
+      width: 200px;
+    }
+
+    @media screen and (max-width: 450px) {
+      width: 150px;
+    }
   }
 
   &__title {

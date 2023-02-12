@@ -17,15 +17,21 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
+    console.log(
+      `https://63e6c829c865e1f24432b2a9.mockapi.io/items?${
+        categoryId === 0 ? '' : categoryId
+      }&sortBy=${sortType.sortProperty}`,
+    );
     try {
       fetch(
         `https://63e6c829c865e1f24432b2a9.mockapi.io/items?${
-          categoryId === 0 ? categoryId : ''
-        }&sortBy=${sortType.sortProperty}`,
+          categoryId > 0 ? `category=${categoryId}&` : ''
+        }sortBy=${sortType.sortProperty}`,
       )
         .then((response) => response.json())
         .then((json) => {
           setItems(json);
+          console.log(items);
           setIsLoading(false);
         });
     } catch (error) {
