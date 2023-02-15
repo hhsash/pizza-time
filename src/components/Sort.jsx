@@ -3,28 +3,30 @@ import { useSelector, useDispatch } from 'react-redux/es/exports';
 
 import { setSortType } from '../redux/slices/filterSlice';
 
+export const sortList = [
+  {
+    name: 'популярності',
+    sortProperty: 'rating',
+  },
+  {
+    name: 'ціні',
+    sortProperty: 'price',
+  },
+  {
+    name: 'алфавіту',
+    sortProperty: 'title',
+  },
+];
+
 const Sort = () => {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
 
   const [open, setOpen] = useState(false);
-  const list = [
-    {
-      name: 'популярності',
-      sortProperty: 'rating',
-    },
-    {
-      name: 'ціні',
-      sortProperty: 'price',
-    },
-    {
-      name: 'алфавіту',
-      sortProperty: 'title',
-    },
-  ];
 
-  const onClickListItem = (item) => {
+  const onClicksortListItem = (item) => {
     dispatch(setSortType(item));
+    console.log(item);
     setOpen(false);
   };
 
@@ -49,9 +51,9 @@ const Sort = () => {
       {open && (
         <div className='sort__popup'>
           <ul>
-            {list.map((item, index) => (
+            {sortList.map((item, index) => (
               <li
-                onClick={() => onClickListItem(item)}
+                onClick={() => onClicksortListItem(item)}
                 key={index}
                 className={sort.sortProperty === item.sortProperty ? 'active' : ''}
               >
