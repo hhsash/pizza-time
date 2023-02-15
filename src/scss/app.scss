@@ -3,6 +3,11 @@
 
 @import 'components/all';
 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 body {
   background-color: $background;
 }

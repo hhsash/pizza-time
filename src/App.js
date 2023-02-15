@@ -1,6 +1,5 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Categories from './components/Categories';
 
 import Header from './components/Header';
 import Home from './pages/Home';

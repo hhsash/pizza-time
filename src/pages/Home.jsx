@@ -1,37 +1,47 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { SearchContext } from '../App';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
 
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 import Pagination from '../components/Pagination';
 import Search from '../components/Search/index';
+import { SearchContext } from '../App';
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const categoryId = useSelector((state) => state.filter.categoryId);
+  const sortType = useSelector((state) => state.filter.sort.sortProperty);
+  const currentPage = useSelector((state) => state.filter.currentPage);
+
   const { searchValue, setSearchValue } = useContext(SearchContext);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: 'популярності',
-    sortProperty: 'rating',
-  });
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+    console.log(number);
+  };
 
   useEffect(() => {
     setIsLoading(true);
     try {
-      fetch(
-        `https://63e6c829c865e1f24432b2a9.mockapi.io/items?page=${currentPage}&limit=4&${
-          categoryId > 0 ? `category=${categoryId}&` : ''
-        }sortBy=${sortType.sortProperty}`,
-      )
-        .then((response) => response.json())
+      axios
+        .get(
+          `https://63e6c829c865e1f24432b2a9.mockapi.io/items?page=${currentPage}&limit=4&${
+            categoryId > 0 ? `category=${categoryId}&` : ''
+          }sortBy=${sortType.sortProperty}`,
+        )
         .then((json) => {
-          setItems(json);
-          console.log(items);
+          setItems(json.data);
           setIsLoading(false);
         });
     } catch (error) {
@@ -45,7 +55,7 @@ const Home = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    setCurrentPage(1);
+    onChangePage(1);
     setCategoryId(0);
   }, [searchValue]);
 
@@ -58,14 +68,14 @@ const Home = () => {
     <div className='container'>
       <div className='content-top__wrapper'>
         <div className='content__top'>
-          <Categories value={categoryId} onChangeCategory={(id) => setCategoryId(id)} />
+          <Categories value={categoryId} onChangeCategory={onChangeCategory} />
           <Search />
         </div>
-        <Sort value={sortType} onChangeSort={(obj) => setSortType(obj)} />
+        <Sort />
       </div>
       <h2 className='content__title'>Усі піци</h2>
       <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
