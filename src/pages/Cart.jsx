@@ -95,7 +95,7 @@ const Cart = () => {
               />
             </svg>
 
-            <span>Очистить корзину</span>
+            <span>Очистити корзину</span>
           </div>
         </div>
         <div className='content__items'>
@@ -106,10 +106,10 @@ const Cart = () => {
         <div className='cart__bottom'>
           <div className='cart__bottom-details'>
             <span>
-              Всего пицц: <b>{totalCount} шт.</b>
+              Всього піц: <b>{totalCount} шт.</b>
             </span>
             <span>
-              Сумма заказа: <b>{totalPrice} ₴</b>
+              Сума замовлення: <b>{totalPrice} ₴</b>
             </span>
           </div>
           <div className='cart__bottom-buttons'>
@@ -130,10 +130,10 @@ const Cart = () => {
                 />
               </svg>
 
-              <span>Вернуться назад</span>
+              <span>Повернутися назад</span>
             </Link>
             <div className='button pay-btn'>
-              <span>Оплатить сейчас</span>
+              <span>Сплатити зараз</span>
             </div>
           </div>
         </div>

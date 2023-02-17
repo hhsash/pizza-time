@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-const Categories = ({ value, onChangeCategory }) => {
-  const categories = ['Усі', 'М’ясні', 'Вегетаріанскі', 'Гриль', 'Гострі', 'Закриті'];
+export const categories = ['Усі', 'М’ясні', 'Вегетаріанскі', 'Гриль', 'Гострі'];
 
+const Categories = ({ value, onChangeCategory }) => {
   return (
     <div className='categories'>
       <ul>

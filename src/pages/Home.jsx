@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 
-import { setCategoryId, setCurrentPage, setSearchParams } from '../redux/slices/filterSlice';
-import Categories from '../components/Categories';
+import { setCategoryId, setSearchParams } from '../redux/slices/filterSlice';
+import Categories, { categories } from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
@@ -20,7 +20,7 @@ const Home = () => {
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sortType = useSelector((state) => state.filter.sort.sortProperty);
 
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const { searchValue } = useContext(SearchContext);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +97,7 @@ const Home = () => {
         </div>
         <Sort />
       </div>
-      <h2 className='content__title'>Усі піци</h2>
+      <h2 className='content__title'>{categories[categoryId]} піци</h2>
       <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
     </div>
   );

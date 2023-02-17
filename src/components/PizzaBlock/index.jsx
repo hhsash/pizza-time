@@ -49,13 +49,13 @@ const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, categoty, rating
                 key={index}
                 className={activeSize === index ? 'active' : ''}
               >
-                {size} см.
+                {size} см
               </li>
             ))}
           </ul>
         </div>
         <div className='pizza-block__bottom'>
-          <div className='pizza-block__price'>от {price} ₴</div>
+          <div className='pizza-block__price'>від {price} ₴</div>
           <div onClick={onClickAdd} className='button button--outline button--add'>
             <svg
               width='12'
@@ -69,7 +69,7 @@ const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, categoty, rating
                 fill='white'
               />
             </svg>
-            <span>Добавить</span>
+            <span>Додати</span>
             {addedCount > 0 && <i>{addedCount}</i>}
           </div>
         </div>

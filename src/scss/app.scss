@@ -19,6 +19,7 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+  box-shadow: 0 5px 15px 4px rgb(1 1 1 / 25%);
 
   @media screen and (max-width:550px) {
     width: 90vw;
@@ -38,7 +39,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 35px;
-    grid-row-gap: 65px;
+    grid-row-gap: 70px;
     
     @media screen and (max-width: 1465px) {
       grid-template-columns: repeat(3, 1fr);
