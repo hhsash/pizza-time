@@ -30,6 +30,33 @@ body {
 .content {
   padding: 40px 0;
 
+  &__error-info {
+    margin: 100px auto;
+    max-width: 450px;
+    text-align: center;
+
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 15px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 30px;
+      }
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 145.4%;
+      letter-spacing: 0.01em;
+      color: #777777;
+
+      @media screen and (max-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+
   &__title {
     margin: 35px 0;
   }
@@ -39,7 +66,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 35px;
-    grid-row-gap: 70px;
+    grid-row-gap: 65px;
     
     @media screen and (max-width: 1465px) {
       grid-template-columns: repeat(3, 1fr);
@@ -400,7 +427,7 @@ body {
       margin-bottom: 15px;
 
       @media screen and (max-width: 768px) {
-        font-size: 32px;
+        font-size: 30px;
       }
     }
 

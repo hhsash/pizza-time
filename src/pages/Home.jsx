@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 
 import { setCategoryId, setSearchParams } from '../redux/slices/filterSlice';
+import { fetchPizzas } from '../redux/slices/pizzaSlice';
 import Categories, { categories } from '../components/Categories';
 import Sort, { sortList } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
@@ -17,34 +18,20 @@ const Home = () => {
   const navigate = useNavigate();
   const isMounted = useRef(false);
 
+  const { items, status } = useSelector((state) => state.pizza);
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sortType = useSelector((state) => state.filter.sort.sortProperty);
 
   const { searchValue } = useContext(SearchContext);
 
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
 
-  const fetchPizzas = () => {
-    setIsLoading(true);
-    try {
-      axios
-        .get(
-          `https://63e6c829c865e1f24432b2a9.mockapi.io/items?${
-            categoryId > 0 ? `category=${categoryId}&` : ''
-          }sortBy=${sortType}`,
-        )
-        .then((json) => {
-          setItems(json.data);
-          setIsLoading(false);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+  const getPizzas = async () => {
+    dispatch(fetchPizzas({ categoryId, sortType }));
   };
 
   useEffect(() => {
@@ -63,7 +50,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetchPizzas();
+    getPizzas();
   }, [categoryId, sortType, searchValue]);
 
   useEffect(() => {
@@ -98,7 +85,14 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className='content__title'>{categories[categoryId]} піци</h2>
-      <div className='content__items'>{isLoading ? skeletons : pizzas}</div>
+      {status === 'error' ? (
+        <div className='content__error-info'>
+          <h2>Виникла помилка!</h2>
+          <p>При отриманні піц щось пішло не так, cпробуйте повторити спробу пізніше...</p>
+        </div>
+      ) : (
+        <div className='content__items'>{status === 'loading' ? skeletons : pizzas}</div>
+      )}
     </div>
   );
 };
