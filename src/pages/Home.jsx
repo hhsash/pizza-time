@@ -51,7 +51,7 @@ const Home = () => {
 
   useEffect(() => {
     getPizzas();
-  }, [categoryId, sortType, searchValue]);
+  }, [categoryId, sortType]);
 
   useEffect(() => {
     if (isMounted.current) {
