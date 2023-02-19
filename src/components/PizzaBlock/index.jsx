@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../redux/slices/cartSlice';
 
 const typeNames = ['Тонке', 'Традиційне'];
 
-const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, categoty, rating }) => {
+const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, category, rating }) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector(selectCartItemById(id));
 
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
-  const addedCount = cartItem ? cartItem.count : 0;
-
   const onClickAdd = () => {
     const item = {
       id,
+      keyItem: Math.random(),
       title,
       price,
       imageUrl,
@@ -29,8 +28,10 @@ const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, categoty, rating
   return (
     <div className='pizza-block__wrapper'>
       <div className='pizza-block'>
-        <img className='pizza-block__image' src={imageUrl} alt={title} />
-        <h4 className='pizza-block__title'>{title}</h4>
+        <Link to={`pizza/${id}`}>
+          <img className='pizza-block__image' src={imageUrl} alt={title} />
+          <h4 className='pizza-block__title'>{title}</h4>
+        </Link>
         <div className='pizza-block__selector'>
           <ul>
             {types.map((type) => (
@@ -71,7 +72,6 @@ const PizzaBlock = ({ id, imageUrl, title, types, sizes, price, categoty, rating
               />
             </svg>
             <span>Додати</span>
-            {addedCount > 0 && <i>{addedCount}</i>}
           </div>
         </div>
       </div>

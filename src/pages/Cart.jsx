@@ -56,7 +56,7 @@ const Cart = () => {
                 strokeLinejoin='round'
               />
             </svg>
-            Корзина
+            Кошик
           </h2>
           <div onClick={onClickClear} className='cart__clear'>
             <svg
@@ -101,7 +101,7 @@ const Cart = () => {
         </div>
         <div className='content__items'>
           {items.map((item) => (
-            <CartItem key={item.id} {...item} />
+            <CartItem key={item.keyItem} {...item} />
           ))}
         </div>
         <div className='cart__bottom'>
